@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCIENCE = WATER | Premium Edu App</title>
+    <title>SCIENCE = ATER | Premium Edu App</title>
     
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -1256,6 +1256,662 @@
             }
         }
         /* =================== END THUMBNAIL SYSTEM CSS =================== */
+
+        /* =================== MCQ EXAM SYSTEM CSS =================== */
+        .mcq-section {
+            margin: 48px 0;
+            padding: 32px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: var(--radius-xl);
+            border: 2px solid #e2e8f0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .mcq-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .mcq-section-title {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mcq-section-filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .mcq-filter-btn-student {
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mcq-filter-btn-student:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .mcq-filter-btn-student.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .mcq-exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .mcq-exam-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e2e8f0;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mcq-exam-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .mcq-exam-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mcq-exam-category {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .mcq-exam-category.ssc {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--ssc-color);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .mcq-exam-category.hsc {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--hsc-color);
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        .mcq-exam-title {
+            color: var(--text-primary);
+            margin: 0 0 12px 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.4;
+            padding-right: 100px;
+        }
+
+        .mcq-exam-subject {
+            color: var(--text-secondary);
+            margin: 0 0 8px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mcq-exam-chapter {
+            color: var(--text-secondary);
+            margin: 0 0 20px 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mcq-exam-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: var(--radius-md);
+            border: 1px solid #e2e8f0;
+        }
+
+        .mcq-stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .mcq-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .mcq-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .mcq-exam-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .mcq-exam-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* MCQ Exam Interface */
+        .mcq-exam-interface {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            z-index: 10001;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .mcq-exam-container {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .mcq-exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .mcq-exam-info h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .mcq-exam-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .mcq-timer {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            padding: 12px 24px;
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 2px solid #fbbf24;
+        }
+
+        .mcq-question-container {
+            margin-bottom: 40px;
+        }
+
+        .mcq-question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .mcq-question-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: var(--radius-md);
+            border: 1px solid #e2e8f0;
+        }
+
+        .mcq-options-container {
+            display: grid;
+            gap: 12px;
+        }
+
+        .mcq-option {
+            padding: 18px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .mcq-option:hover {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+
+        .mcq-option.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+
+        .mcq-option.correct {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        }
+
+        .mcq-option.incorrect {
+            border-color: #ef4444;
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        }
+
+        .mcq-option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #f1f5f9;
+            color: var(--text-primary);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .mcq-option.selected .mcq-option-letter {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .mcq-option.correct .mcq-option-letter {
+            background: #10b981;
+            color: white;
+        }
+
+        .mcq-option.incorrect .mcq-option-letter {
+            background: #ef4444;
+            color: white;
+        }
+
+        .mcq-option-text {
+            flex: 1;
+            color: var(--text-primary);
+        }
+
+        .mcq-exam-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .mcq-prev-btn,
+        .mcq-next-btn,
+        .mcq-submit-btn {
+            padding: 14px 32px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mcq-prev-btn {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid #e2e8f0;
+        }
+
+        .mcq-prev-btn:hover {
+            background: #f1f5f9;
+            border-color: var(--primary-color);
+        }
+
+        .mcq-next-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        .mcq-next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mcq-submit-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+        }
+
+        .mcq-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mcq-result-container {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .mcq-result-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+        }
+
+        .mcq-result-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .mcq-result-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 24px 0;
+        }
+
+        .mcq-result-breakdown {
+            max-width: 600px;
+            margin: 32px auto;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid #e2e8f0;
+        }
+
+        .mcq-result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .mcq-result-stat {
+            padding: 20px;
+            border-radius: var(--radius-md);
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mcq-result-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .mcq-result-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .mcq-review-questions {
+            text-align: left;
+            margin-top: 32px;
+        }
+
+        .mcq-review-title {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .mcq-review-question {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .mcq-review-question.correct {
+            border-left: 4px solid #10b981;
+        }
+
+        .mcq-review-question.incorrect {
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Admin MCQ Management */
+        .mcq-admin-form {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 2px dashed #cbd5e1;
+            margin-bottom: 32px;
+        }
+
+        .mcq-admin-form h3 {
+            margin-bottom: 24px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mcq-question-form {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .mcq-question-form h4 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mcq-option-input-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .mcq-option-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mcq-option-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .mcq-correct-option-select {
+            padding: 8px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            background: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mcq-add-question-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            transition: all var(--transition-fast);
+        }
+
+        .mcq-add-question-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mcq-exam-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .mcq-edit-btn {
+            flex: 1;
+            background: var(--gradient-secondary);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all var(--transition-fast);
+        }
+
+        .mcq-delete-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #dc2626;
+            border: 2px solid #fca5a5;
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all var(--transition-fast);
+        }
+
+        .mcq-edit-btn:hover,
+        .mcq-delete-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .mcq-exam-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mcq-exam-card {
+                padding: 20px;
+            }
+
+            .mcq-exam-container {
+                padding: 24px;
+                margin: 20px auto;
+            }
+
+            .mcq-exam-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .mcq-options-container {
+                grid-template-columns: 1fr;
+            }
+
+            .mcq-exam-controls {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .mcq-prev-btn,
+            .mcq-next-btn,
+            .mcq-submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .mcq-result-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* =================== END MCQ EXAM SYSTEM CSS =================== */
     </style>
 </head>
 <body>
@@ -1307,6 +1963,36 @@
             </div>
         </div>
         
+        <!-- MCQ Exam Section -->
+        <div class="mcq-section" id="mcqExamContainer">
+            <div class="mcq-section-header">
+                <h3 class="mcq-section-title">
+                    <span>📝</span> MCQ Exam Practice
+                </h3>
+                <div class="mcq-section-filters">
+                    <button class="mcq-filter-btn-student active" data-category="all" onclick="filterMCQExams('all')">
+                        <span>📚</span> All Exams
+                    </button>
+                    <button class="mcq-filter-btn-student" data-category="ssc" onclick="filterMCQExams('ssc')">
+                        <span>📘</span> SSC
+                    </button>
+                    <button class="mcq-filter-btn-student" data-category="hsc" onclick="filterMCQExams('hsc')">
+                        <span>📙</span> HSC
+                    </button>
+                </div>
+            </div>
+            <div id="mcqExamContent">
+                Loading MCQ exams...
+            </div>
+        </div>
+        
+        <!-- MCQ Exam Interface -->
+        <div id="mcqExamInterface" class="mcq-exam-interface">
+            <div class="mcq-exam-container" id="mcqExamInterfaceContent">
+                <!-- Exam content will be loaded here -->
+            </div>
+        </div>
+        
         <div id="adminPanel">
             <div class="admin-header">
                 <h2>📊 Admin Control Dashboard</h2>
@@ -1328,14 +2014,11 @@
                 <button class="admin-tab-btn" onclick="showTab('suggestionTab')" id="suggestionTabBtn">
                     <span>🔗</span> Suggestions
                 </button>
-                <button class="admin-tab-btn" onclick="showTab('paymentTab')" id="paymentTabBtn">
-                    <span>💳</span> Payments
-                </button>
-                <button class="admin-tab-btn" onclick="showTab('studentMessagesTab')" id="studentMessagesTabBtn">
-                    <span>💌</span> Messages
-                </button>
                 <button class="admin-tab-btn" onclick="showTab('thumbnailTab')" id="thumbnailTabBtn">
                     <span>🖼️</span> Thumbnails
+                </button>
+                <button class="admin-tab-btn" onclick="showTab('mcqTab')" id="mcqTabBtn">
+                    <span>📝</span> MCQ Exams
                 </button>
             </div>
             
@@ -1444,115 +2127,6 @@
                 <div id="hscSuggestionsContainer" class="suggestion-cards-container"></div>
             </div>
 
-            <div id="paymentTab" style="display: none;">
-                <div style="background: linear-gradient(135deg, #f0fff4 0%, #dcfce7 100%); padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--payment-color); margin-bottom: 32px;">
-                    <h3 style="margin-bottom: 24px; color: var(--payment-color); display: flex; align-items: center; gap: 12px;">💰 Payment Configuration</h3>
-                    <div class="form-group">
-                        <input type="text" id="bkashNumber" placeholder="Bkash Number (e.g., 01772123165)" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;" value="01772123165">
-                        <input type="text" id="paymentAmount" placeholder="Default Payment Amount (e.g., 500)" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;" value="500">
-                        <textarea id="paymentInstructions" placeholder="Payment Instructions for Students" style="width:100%; padding:14px 16px; margin-bottom:24px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif; height:140px;">
-1. বিকাশে গিয়ে "Send Money" অপশন নির্বাচন করুন
-2. নম্বর দিন: 01772123165
-3. টাকার পরিমাণ দিন: ৫০০ টাকা
-4. Reference হিসেবে আপনার নাম লিখুন
-5. ট্রানজেকশন ID সংরক্ষণ করুন
-6. নিচের ফর্মে তথ্য জমা দিন</textarea>
-                    </div>
-                    <button onclick="updatePaymentSettings()" class="login-btn" style="background: var(--gradient-secondary);">💳 Update Payment Settings</button>
-                    <div id="paymentSettingsMessage" style="text-align: center; margin-top: 16px;"></div>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
-                    <h3 style="color: var(--payment-color); display: flex; align-items: center; gap: 12px;">📋 Payment History</h3>
-                    <div style="display: flex; gap: 12px;">
-                        <button onclick="loadAllPayments()" class="link-btn" style="padding: 12px 20px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; border: none;">
-                            <span>🔄</span> Refresh
-                        </button>
-                        <button onclick="exportPayments()" class="link-btn" style="padding: 12px 20px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); color: white; border: none;">
-                            <span>📊</span> Export Data
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="paymentsFilter" style="margin-bottom: 24px; display: flex; gap: 16px; flex-wrap: wrap;">
-                    <select id="paymentStatusFilter" onchange="filterPayments()" style="padding: 12px 20px; border-radius: var(--radius-md); border: 2px solid #e2e8f0; font-family: 'Inter', sans-serif; min-width: 200px;">
-                        <option value="all">All Payments</option>
-                        <option value="pending">Pending</option>
-                        <option value="confirmed">Confirmed</option>
-                        <option value="rejected">Rejected</option>
-                    </select>
-                    <input type="date" id="paymentDateFilter" onchange="filterPayments()" style="padding: 12px 20px; border-radius: var(--radius-md); border: 2px solid #e2e8f0; font-family: 'Inter', sans-serif; min-width: 200px;">
-                </div>
-                
-                <div id="paymentsContainer" class="payment-cards-container">
-                    <div class="loading-spinner">Loading payments...</div>
-                </div>
-                
-                <div style="margin-top: 40px;">
-                    <h4 style="margin-bottom: 20px; color: var(--text-secondary); font-weight: 600;">📈 Payment Statistics</h4>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value" id="totalPayments">0</div>
-                            <div class="stat-label">Total Payments</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="confirmedPayments">0</div>
-                            <div class="stat-label">Confirmed</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="pendingPayments">0</div>
-                            <div class="stat-label">Pending</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="rejectedPayments">0</div>
-                            <div class="stat-label">Rejected</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="studentMessagesTab" style="display: none;">
-                <div style="margin-bottom: 32px;">
-                    <h3 style="color: var(--message-color); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">💌 Student Messages (<span id="studentMessageCount">0</span>)</h3>
-                    
-                    <div style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
-                        <select id="messageStatusFilter" onchange="filterStudentMessages()" style="padding: 12px 20px; border-radius: var(--radius-md); border: 2px solid #e2e8f0; font-family: 'Inter', sans-serif; flex: 1; min-width: 200px;">
-                            <option value="all">All Messages</option>
-                            <option value="unread">Unread Only</option>
-                            <option value="replied">Replied</option>
-                            <option value="not_replied">Not Replied</option>
-                        </select>
-                        <input type="text" id="messageSearch" placeholder="Search by name or phone..." style="padding: 12px 20px; border-radius: var(--radius-md); border: 2px solid #e2e8f0; font-family: 'Inter', sans-serif; flex: 2; min-width: 300px;" onkeyup="searchStudentMessages()">
-                    </div>
-                </div>
-                
-                <div id="studentMessagesContainer">
-                    <div class="loading-spinner">Loading student messages...</div>
-                </div>
-                
-                <div style="margin-top: 40px;">
-                    <h4 style="margin-bottom: 20px; color: var(--text-secondary); font-weight: 600;">📊 Message Statistics</h4>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value" id="totalStudentMessages">0</div>
-                            <div class="stat-label">Total Messages</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="unreadMessages">0</div>
-                            <div class="stat-label">Unread</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="repliedMessages">0</div>
-                            <div class="stat-label">Replied</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="todayMessages">0</div>
-                            <div class="stat-label">Today</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div id="thumbnailTab" style="display: none;">
                 <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 32px; border-radius: var(--radius-lg); border: 2px dashed #cbd5e1; margin-bottom: 32px;">
                     <h3 style="margin-bottom: 24px; color: var(--primary-color); display: flex; align-items: center; gap: 12px;">🖼️ Add New Thumbnail</h3>
@@ -1605,6 +2179,115 @@
                 </div>
             </div>
 
+            <div id="mcqTab" style="display: none;">
+                <div class="mcq-admin-form">
+                    <h3><span>➕</span> Create New MCQ Exam</h3>
+                    
+                    <div class="form-group">
+                        <label for="mcqExamTitle">Exam Title *</label>
+                        <input type="text" id="mcqExamTitle" placeholder="e.g., Physics Chapter 1: Force MCQ Test" 
+                               style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mcqExamCategory">Category *</label>
+                        <select id="mcqExamCategory" 
+                                style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;"
+                                onchange="updateMCQSubjects()">
+                            <option value="ssc">📘 SSC</option>
+                            <option value="hsc">📙 HSC</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mcqExamSubject">Subject *</label>
+                        <select id="mcqExamSubject" 
+                                style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
+                            <!-- Subjects will be loaded dynamically -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mcqExamChapter">Chapter/Topic *</label>
+                        <input type="text" id="mcqExamChapter" placeholder="e.g., Chapter 1: Force and Motion" 
+                               style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mcqExamTime">Time Limit (Minutes) *</label>
+                        <input type="number" id="mcqExamTime" placeholder="e.g., 30" min="5" max="180" 
+                               style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mcqExamDescription">Description</label>
+                        <textarea id="mcqExamDescription" placeholder="Short description about this exam..." 
+                                  style="width:100%; padding:14px 16px; margin-bottom:24px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif; height:100px;"></textarea>
+                    </div>
+                    
+                    <div id="mcqQuestionsContainer">
+                        <h4 style="color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                            <span>❓</span> Add Questions (Minimum 1 required)
+                        </h4>
+                        <div id="mcqQuestionForms">
+                            <!-- Question forms will be added here -->
+                        </div>
+                        <button type="button" onclick="addMCQQuestionForm()" class="mcq-add-question-btn">
+                            <span>➕</span> Add Another Question
+                        </button>
+                    </div>
+                    
+                    <div id="mcqMessage" style="text-align: center; margin: 24px 0;"></div>
+                    
+                    <button onclick="saveMCQExam()" class="login-btn" style="background: var(--gradient-primary);">
+                        🚀 Save MCQ Exam
+                    </button>
+                </div>
+                
+                <h3 style="margin: 40px 0 24px; color: var(--text-primary); display: flex; align-items: center; gap: 12px;">📊 Manage MCQ Exams</h3>
+                
+                <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+                    <button class="thumbnail-filter-btn active" data-category="all" onclick="filterMCQExamsAdmin('all')" 
+                            style="padding: 12px 24px; border-radius: var(--radius-md); border: 2px solid var(--primary-color); background: var(--gradient-primary); color: white; cursor: pointer; font-weight: 500;">
+                        📚 All Exams
+                    </button>
+                    <button class="thumbnail-filter-btn" data-category="ssc" onclick="filterMCQExamsAdmin('ssc')" 
+                            style="padding: 12px 24px; border-radius: var(--radius-md); border: 2px solid #e2e8f0; background: white; color: var(--text-primary); cursor: pointer; font-weight: 500;">
+                        📘 SSC
+                    </button>
+                    <button class="thumbnail-filter-btn" data-category="hsc" onclick="filterMCQExamsAdmin('hsc')" 
+                            style="padding: 12px 24px; border-radius: var(--radius-md); border: 2px solid #e2e8f0; background: white; color: var(--text-primary); cursor: pointer; font-weight: 500;">
+                        📙 HSC
+                    </button>
+                </div>
+                
+                <div id="adminMCQExamsContainer" class="mcq-exam-cards-container">
+                    Loading MCQ exams...
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <h4 style="margin-bottom: 20px; color: var(--text-secondary); font-weight: 600;">📊 MCQ Exam Statistics</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalMCQExams">0</div>
+                            <div class="stat-label">Total Exams</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalMCQQuestions">0</div>
+                            <div class="stat-label">Total Questions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="sscMCQExams">0</div>
+                            <div class="stat-label">SSC Exams</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="hscMCQExams">0</div>
+                            <div class="stat-label">HSC Exams</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button onclick="saveAllData()" class="login-btn" style="width: 100%; margin-top: 40px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; gap: 12px;">
                 <span>💾</span> Sync & Save All Changes
             </button>
@@ -1616,42 +2299,6 @@
                 <h2>📅 ক্লাস রুটিন</h2>
                 <div id="routineLoading" class="loading-spinner"><p>লোড হচ্ছে...</p></div>
                 <div id="studentRoutine" class="routine-system"></div>
-                
-                <!-- Student Message System -->
-                <div class="student-message-form">
-                    <h3 style="text-align:center; margin-bottom:24px; font-size:1.25rem; color: var(--message-color); display: flex; align-items: center; justify-content: center; gap: 12px;">💌 প্রশ্ন বা বার্তা পাঠান</h3>
-                    
-                    <div id="studentMessageForm">
-                        <input type="text" id="studentMsgName" placeholder="আপনার নাম" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
-                        <input type="text" id="studentMsgPhone" placeholder="মোবাইল নম্বর" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
-                        <select id="studentMsgCategory" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
-                            <option value="">বিষয় নির্বাচন করুন</option>
-                            <option value="general">সাধারণ প্রশ্ন</option>
-                            <option value="class_related">ক্লাস সংক্রান্ত</option>
-                            <option value="payment">পেমেন্ট সংক্রান্ত</option>
-                            <option value="technical">টেকনিক্যাল সমস্যা</option>
-                            <option value="suggestion">পরামর্শ</option>
-                            <option value="other">অন্যান্য</option>
-                        </select>
-                        <textarea id="studentMsgContent" placeholder="আপনার প্রশ্ন বা বার্তা লিখুন..." style="width:100%; padding:14px 16px; margin-bottom:24px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif; height:140px;"></textarea>
-                        
-                        <div id="studentMsgResponse" style="text-align:center; margin:16px 0;"></div>
-                        
-                        <button onclick="sendStudentMessage()" class="login-btn" style="background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; gap: 12px;">
-                            <span>📤</span> বার্তা পাঠান
-                        </button>
-                    </div>
-                    
-                    <div style="margin-top: 32px; padding: 24px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: var(--radius-md); border: 2px solid #bae6fd;">
-                        <h4 style="color: #0369a1; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">📬 আপনার বার্তার উত্তর</h4>
-                        <div id="studentRepliesContainer">
-                            <p style="color: #666; text-align: center; padding: 20px;">অ্যাডমিনের উত্তর এখানে দেখতে পারবেন</p>
-                        </div>
-                        <button onclick="loadStudentReplies()" class="link-btn" style="margin-top: 20px; padding: 12px 24px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--gradient-secondary); color: white; border: none;">
-                            <span>🔄</span> উত্তর চেক করুন
-                        </button>
-                    </div>
-                </div>
                 
                 <div class="contact-info" style="margin-top: 40px; text-align: center; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 32px; border-radius: var(--radius-lg); border: 2px solid #e2e8f0;">
                     <h3 style="font-size: 1.1rem; margin-bottom: 20px; color: var(--text-primary);">সরাসরি সহায়তার জন্য</h3>
@@ -1665,69 +2312,6 @@
                 <h2>📢 নোটিশ বোর্ড</h2>
                 <div id="messagesLoading" class="loading-spinner"></div>
                 <div id="studentMessages" style="margin-bottom: 40px;"></div>
-                
-                <!-- Payment Section for Students -->
-                <div style="background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%); padding: 32px; border-radius: var(--radius-lg); margin-bottom: 40px; border: 2px solid var(--payment-color); box-shadow: var(--shadow-md);">
-                    <h3 style="text-align:center; margin-bottom:24px; font-size:1.25rem; color: var(--payment-color); display: flex; align-items: center; justify-content: center; gap: 12px;">💳 বিকাশ পেমেন্ট</h3>
-                    
-                    <div class="payment-info-box">
-                        <div style="text-align: center; margin-bottom: 24px;">
-                            <div style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 8px;">পেমেন্ট করুন</div>
-                            <div class="payment-amount">৫০০ টাকা</div>
-                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--payment-color); margin: 16px 0; letter-spacing: 1px;">০১৭৭২১২৩১৬৫</div>
-                        </div>
-                        
-                        <div class="bkash-guide">
-                            <h4 style="margin-bottom: 16px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">📱 পেমেন্ট করার নিয়ম:</h4>
-                            <ol class="bkash-steps">
-                                <li>বিকাশ অ্যাপ ওপেন করুন</li>
-                                <li>"Send Money" অপশন নির্বাচন করুন</li>
-                                <li>নম্বর দিন: <strong>01772123165</strong></li>
-                                <li>টাকার পরিমাণ দিন: <strong>৫০০ টাকা</strong></li>
-                                <li>Reference হিসেবে আপনার নাম লিখুন</li>
-                                <li>পিন নম্বর দিন</li>
-                                <li>ট্রানজেকশন ID সংরক্ষণ করুন</li>
-                            </ol>
-                        </div>
-                        
-                        <button onclick="showPaymentForm()" class="login-btn" style="margin-top: 24px; background: var(--gradient-secondary); display: flex; align-items: center; justify-content: center; gap: 12px;">
-                            <span>✅</span> পেমেন্ট তথ্য জমা দিন
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="paymentFormModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px); z-index:10000; justify-content:center; align-items:center;">
-                    <div style="background:white; padding:40px; border-radius:var(--radius-xl); width:90%; max-width:520px; box-shadow: var(--shadow-xl); border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px;">
-                            <h3 style="color:var(--payment-color); display: flex; align-items: center; gap: 12px;">পেমেন্ট তথ্য জমা দিন</h3>
-                            <button onclick="closePaymentForm()" style="background:none; border:none; font-size:32px; cursor:pointer; color:#666; transition: color var(--transition-fast); padding: 0; line-height: 1;">×</button>
-                        </div>
-                        
-                        <div id="paymentForm">
-                            <input type="text" id="studentName" placeholder="আপনার নাম" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
-                            <input type="text" id="studentPhone" placeholder="আপনার মোবাইল নম্বর" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
-                            <input type="text" id="transactionId" placeholder="ট্রানজেকশন ID (TrxID)" style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
-                            <input type="number" id="paidAmount" placeholder="টাকার পরিমাণ" style="width:100%; padding:14px 16px; margin-bottom:20px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;" value="500">
-                            <select id="paymentFor" style="width:100%; padding:14px 16px; margin-bottom:24px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif;">
-                                <option value="">পেমেন্টের ধরন নির্বাচন করুন</option>
-                                <option value="ssc_monthly">SSC মাসিক ফি</option>
-                                <option value="hsc_monthly">HSC মাসিক ফি</option>
-                                <option value="exam_fee">পরীক্ষার ফি</option>
-                                <option value="admission">ভর্তি ফি</option>
-                                <option value="other">অন্যান্য</option>
-                            </select>
-                            
-                            <div id="paymentMessage" style="text-align:center; margin:20px 0;"></div>
-                            
-                            <button onclick="submitPayment()" class="login-btn" style="background:var(--gradient-secondary);">
-                                📤 পেমেন্ট তথ্য জমা দিন
-                            </button>
-                            <button onclick="closePaymentForm()" class="link-btn" style="margin-top:20px; background:#f1f5f9; border: 2px solid #e2e8f0;">
-                                বাতিল করুন
-                            </button>
-                        </div>
-                    </div>
-                </div>
                 
                 <div style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); padding: 32px; border-radius: var(--radius-lg); margin-bottom: 40px; border: 2px solid #cbd5e1;">
                     <h3 style="text-align:center; margin-bottom:24px; font-size:1.25rem; color: var(--primary-color); display: flex; align-items: center; justify-content: center; gap: 12px;">🎥 ভিডিও লেকচার সমূহ</h3>
@@ -1814,6 +2398,7 @@
         let payments = [];
         let studentMessages = [];
         let thumbnails = [];
+        let mcqExams = [];
         let paymentSettings = {
             bkashNumber: "01772123165",
             paymentAmount: 500,
@@ -1867,12 +2452,22 @@
             subject: 'physics'
         };
 
+        // MCQ System Variables
+        let currentMCQCategory = 'all';
+        let currentExam = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let examTimer = null;
+        let timeRemaining = 0;
+
         // Initialize App
         document.addEventListener('DOMContentLoaded', async function() {
             console.log("🚀 App Initializing...");
             
             // Initialize subject dropdown
             updateSubjectOptions();
+            updateMCQSubjects();
+            addMCQQuestionForm(); // Add first question form
             
             // Load data
             if (isFirebaseConnected) {
@@ -1888,6 +2483,7 @@
                 loadStudentMessagesFromStorage();
                 loadPaymentSettings();
                 loadThumbnailsFromStorage();
+                loadMCQExamsFromStorage();
                 showFirebaseStatus(false);
             }
             
@@ -1899,6 +2495,8 @@
             updateClassSelect();
             renderThumbnailGallery();
             updateThumbnailStats();
+            renderMCQExamGallery();
+            updateMCQStats();
             
             cacheDOM();
             
@@ -2003,7 +2601,8 @@
                 .routine-day, .class-slot, .suggestion-card, .payment-card,
                 .message-system-card, .thumbnail-card, .stat-card,
                 .thumbnail-section, .student-message-form, .payment-info-box,
-                .bkash-guide, .contact-info {
+                .bkash-guide, .contact-info, .mcq-section, .mcq-exam-card,
+                .mcq-exam-container, .mcq-question-form, .mcq-result-breakdown {
                     background: #1e1e1e !important;
                     color: #f0f0f0 !important;
                     border-color: #444444 !important;
@@ -2011,6 +2610,10 @@
                 
                 .card::before {
                     background: linear-gradient(135deg, #666666 0%, #888888 100%) !important;
+                }
+                
+                .mcq-exam-card::before {
+                    background: linear-gradient(135deg, #555555 0%, #777777 100%) !important;
                 }
                 
                 .card h2, h1, h2, h3, h4, h5, h6 {
@@ -2021,26 +2624,30 @@
                 .form-group select, .form-group textarea, 
                 .link-btn, .subject-btn, .thumbnail-filter-btn-student,
                 .thumbnail-filter-btn, .admin-tab-btn, .chat-container,
-                .virtual-scroll-container {
+                .virtual-scroll-container, .mcq-filter-btn-student,
+                .mcq-option-input, .mcq-correct-option-select {
                     background: #2a2a2a !important;
                     color: #ffffff !important;
                     border-color: #555555 !important;
                 }
                 
                 .login-box input:focus, .form-group input:focus, 
-                .form-group select:focus, .form-group textarea:focus {
+                .form-group select:focus, .form-group textarea:focus,
+                .mcq-option-input:focus {
                     border-color: #888888 !important;
                     box-shadow: 0 0 0 3px rgba(136, 136, 136, 0.2) !important;
                 }
                 
-                .link-btn:hover, .subject-btn:hover {
+                .link-btn:hover, .subject-btn:hover, .mcq-filter-btn-student:hover {
                     background: #444444 !important;
                     color: #ffffff !important;
                 }
                 
                 .btn-ssc, .btn-hsc, .btn-payment, .btn-message, 
                 .login-btn, .thumbnail-video-link, .suggestion-link,
-                .whatsapp-btn, .admin-tab-btn.active {
+                .whatsapp-btn, .admin-tab-btn.active, .mcq-exam-link,
+                .mcq-filter-btn-student.active, .mcq-add-question-btn,
+                .mcq-edit-btn, .mcq-prev-btn, .mcq-next-btn, .mcq-submit-btn {
                     background: linear-gradient(135deg, #555555 0%, #777777 100%) !important;
                     color: #ffffff !important;
                 }
@@ -2050,7 +2657,8 @@
                 }
                 
                 .thumbnail-filter-btn-student.active,
-                .thumbnail-filter-btn.active {
+                .thumbnail-filter-btn.active,
+                .thumbnail-filter-btn[data-category="all"].active {
                     background: linear-gradient(135deg, #555555 0%, #777777 100%) !important;
                     border-color: #888888 !important;
                 }
@@ -2068,7 +2676,7 @@
                     background: linear-gradient(135deg, #252525 0%, #2d2d2d 100%) !important;
                 }
                 
-                .class-slot:hover {
+                .class-slot:hover, .mcq-option:hover {
                     border-color: #777777 !important;
                     background: #2a2a2a !important;
                 }
@@ -2077,7 +2685,7 @@
                     color: #cccccc !important;
                 }
                 
-                .suggestion-card {
+                .suggestion-card, .mcq-review-question {
                     border-left-color: #777777 !important;
                 }
                 
@@ -2085,12 +2693,12 @@
                     border-left-color: #777777 !important;
                 }
                 
-                .payment-card.pending {
+                .payment-card.pending, .mcq-review-question.incorrect {
                     background: linear-gradient(135deg, #3a3a3a 0%, #444444 100%) !important;
                     border-left-color: #f59e0b !important;
                 }
                 
-                .payment-card.confirmed {
+                .payment-card.confirmed, .mcq-review-question.correct {
                     background: linear-gradient(135deg, #2d3a2d 0%, #3a4a3a 100%) !important;
                     border-left-color: #10b981 !important;
                 }
@@ -2120,48 +2728,49 @@
                     border-color: #445544 !important;
                 }
                 
-                .student-message-form, .bkash-guide, .payment-info-box {
+                .student-message-form, .bkash-guide, .payment-info-box,
+                .mcq-admin-form {
                     background: linear-gradient(135deg, #252525 0%, #2d2d2d 100%) !important;
                     border-color: #555555 !important;
                 }
                 
-                .thumbnail-section {
+                .thumbnail-section, .mcq-section {
                     background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%) !important;
                     border-color: #444444 !important;
                 }
                 
-                .thumbnail-image-container {
+                .thumbnail-image-container, .mcq-exam-stats {
                     background: linear-gradient(135deg, #2a2a2a 0%, #333333 100%) !important;
                 }
                 
-                .thumbnail-category-badge {
+                .thumbnail-category-badge, .mcq-exam-category {
                     background: rgba(40, 40, 40, 0.9) !important;
                     color: #ffffff !important;
                     border: 1px solid rgba(255, 255, 255, 0.1) !important;
                 }
                 
-                .thumbnail-category-badge.ssc {
+                .thumbnail-category-badge.ssc, .mcq-exam-category.ssc {
                     background: rgba(60, 60, 80, 0.9) !important;
                 }
                 
-                .thumbnail-category-badge.hsc {
+                .thumbnail-category-badge.hsc, .mcq-exam-category.hsc {
                     background: rgba(80, 60, 80, 0.9) !important;
                 }
                 
-                .stat-card {
+                .stat-card, .mcq-result-stat {
                     background: #1e1e1e !important;
                     border-color: #444444 !important;
                 }
                 
-                .stat-value {
+                .stat-value, .mcq-result-stat-value, .mcq-stat-value {
                     color: #cccccc !important;
                 }
                 
-                .stat-label {
+                .stat-label, .mcq-result-stat-label, .mcq-stat-label {
                     color: #aaaaaa !important;
                 }
                 
-                .payment-amount {
+                .payment-amount, .mcq-result-score {
                     color: #cccccc !important;
                 }
                 
@@ -2230,6 +2839,44 @@
                     color: #fbbf24 !important;
                     border-color: #f59e0b !important;
                 }
+                
+                .mcq-option.selected {
+                    background: linear-gradient(135deg, #2a333a 0%, #33444a 100%) !important;
+                    border-color: #777777 !important;
+                }
+                
+                .mcq-option.correct {
+                    background: linear-gradient(135deg, #2a3a2a 0%, #334433 100%) !important;
+                    border-color: #10b981 !important;
+                }
+                
+                .mcq-option.incorrect {
+                    background: linear-gradient(135deg, #3a2a2a 0%, #443333 100%) !important;
+                    border-color: #ef4444 !important;
+                }
+                
+                .mcq-option-letter {
+                    background: #2a2a2a !important;
+                    color: #ffffff !important;
+                }
+                
+                .mcq-option.selected .mcq-option-letter {
+                    background: #777777 !important;
+                }
+                
+                .mcq-option.correct .mcq-option-letter {
+                    background: #10b981 !important;
+                }
+                
+                .mcq-option.incorrect .mcq-option-letter {
+                    background: #ef4444 !important;
+                }
+                
+                .mcq-timer {
+                    background: linear-gradient(135deg, #3a3a2a 0%, #444433 100%) !important;
+                    color: #fbbf24 !important;
+                    border-color: #f59e0b !important;
+                }
             `;
             
             document.getElementById('bwThemeStyles').innerHTML = bwStyles;
@@ -2256,11 +2903,9 @@
                 loadAdminMessages();
                 loadAdminRoutine();
                 loadAdminSuggestions();
-                loadAdminPayments();
-                loadAdminStudentMessages();
                 loadAdminThumbnails();
+                loadAdminMCQExams();
                 updateClassSelect();
-                loadPaymentSettingsUI();
                 
                 // Update active tab button
                 document.querySelectorAll('.admin-tab-btn').forEach(btn => {
@@ -2280,7 +2925,7 @@
         }
 
         function showTab(tabName) {
-            ['classTab', 'messageTab', 'routineTab', 'suggestionTab', 'paymentTab', 'studentMessagesTab', 'thumbnailTab'].forEach(t => {
+            ['classTab', 'messageTab', 'routineTab', 'suggestionTab', 'thumbnailTab', 'mcqTab'].forEach(t => {
                 document.getElementById(t).style.display = 'none';
             });
             document.getElementById(tabName).style.display = 'block';
@@ -2290,6 +2935,878 @@
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
+        }
+
+        // =================== MCQ EXAM SYSTEM ===================
+        // Load MCQ exams from local storage
+        function loadMCQExamsFromStorage() {
+            const saved = localStorage.getItem('scienceWaterMCQExams');
+            mcqExams = saved ? JSON.parse(saved) : [];
+        }
+
+        // Save MCQ exams to local storage
+        function saveMCQExamsToStorage() {
+            localStorage.setItem('scienceWaterMCQExams', JSON.stringify(mcqExams));
+        }
+
+        // Load MCQ exams from Firebase
+        async function loadMCQExamsFromFirebase() {
+            if (!isFirebaseConnected) return;
+            
+            try {
+                const snapshot = await db.collection('mcqExams').orderBy('createdAt', 'desc').get();
+                mcqExams = [];
+                snapshot.forEach(doc => {
+                    mcqExams.push({ id: doc.id, ...doc.data() });
+                });
+                saveMCQExamsToStorage();
+                renderMCQExamGallery();
+                updateMCQStats();
+            } catch (error) {
+                console.error("Error loading MCQ exams from Firebase:", error);
+            }
+        }
+
+        async function loadAdminMCQExams() {
+            await loadMCQExamsFromFirebase();
+            renderAdminMCQExams();
+        }
+
+        // Setup Firebase listeners for MCQ exams
+        function setupMCQListeners() {
+            if (!isFirebaseConnected) return;
+            
+            db.collection('mcqExams').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
+                mcqExams = [];
+                snapshot.forEach(doc => {
+                    mcqExams.push({ id: doc.id, ...doc.data() });
+                });
+                saveMCQExamsToStorage();
+                renderMCQExamGallery();
+                if (isAdminLoggedIn) {
+                    renderAdminMCQExams();
+                    updateMCQStats();
+                }
+            });
+        }
+
+        // Update MCQ subjects dropdown
+        function updateMCQSubjects() {
+            const category = document.getElementById('mcqExamCategory').value;
+            const subjectSelect = document.getElementById('mcqExamSubject');
+            
+            subjectSelect.innerHTML = '';
+            SUBJECTS[category].forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject.id;
+                option.textContent = subject.name;
+                subjectSelect.appendChild(option);
+            });
+        }
+
+        // Add MCQ question form
+        function addMCQQuestionForm(index = null) {
+            const container = document.getElementById('mcqQuestionForms');
+            const questionCount = container.children.length;
+            const questionIndex = index !== null ? index : questionCount + 1;
+            
+            const questionForm = document.createElement('div');
+            questionForm.className = 'mcq-question-form';
+            questionForm.innerHTML = `
+                <h4><span>${questionIndex}.</span> Question ${questionIndex}</h4>
+                <div class="form-group">
+                    <label>Question Text *</label>
+                    <textarea class="mcq-question-text" placeholder="Enter the question..." 
+                              style="width:100%; padding:14px 16px; margin-bottom:16px; border-radius:var(--radius-md); border:2px solid #e2e8f0; font-family: 'Inter', sans-serif; height:80px;"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Options *</label>
+                    <div class="mcq-option-input-group">
+                        <div class="mcq-option-letter" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border-radius: var(--radius-sm);">A</div>
+                        <input type="text" class="mcq-option-input" placeholder="Option A" data-letter="A">
+                    </div>
+                    <div class="mcq-option-input-group">
+                        <div class="mcq-option-letter" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border-radius: var(--radius-sm);">B</div>
+                        <input type="text" class="mcq-option-input" placeholder="Option B" data-letter="B">
+                    </div>
+                    <div class="mcq-option-input-group">
+                        <div class="mcq-option-letter" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border-radius: var(--radius-sm);">C</div>
+                        <input type="text" class="mcq-option-input" placeholder="Option C" data-letter="C">
+                    </div>
+                    <div class="mcq-option-input-group">
+                        <div class="mcq-option-letter" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border-radius: var(--radius-sm);">D</div>
+                        <input type="text" class="mcq-option-input" placeholder="Option D" data-letter="D">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Correct Answer *</label>
+                    <select class="mcq-correct-option-select" style="width: 200px; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: var(--radius-md); background: white;">
+                        <option value="">Select correct option</option>
+                        <option value="A">Option A</option>
+                        <option value="B">Option B</option>
+                        <option value="C">Option C</option>
+                        <option value="D">Option D</option>
+                    </select>
+                </div>
+                
+                ${index !== null ? `
+                    <button type="button" onclick="removeMCQQuestionForm(this)" 
+                            style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); color: #dc2626; border: 2px solid #fca5a5; padding: 8px 16px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 6px; margin-top: 16px;">
+                        <span>🗑️</span> Remove Question
+                    </button>
+                ` : ''}
+            `;
+            
+            container.appendChild(questionForm);
+            
+            // Reindex all questions
+            reindexMCQQuestions();
+        }
+
+        // Remove MCQ question form
+        function removeMCQQuestionForm(button) {
+            const questionForm = button.closest('.mcq-question-form');
+            questionForm.remove();
+            reindexMCQQuestions();
+        }
+
+        // Reindex MCQ questions
+        function reindexMCQQuestions() {
+            const container = document.getElementById('mcqQuestionForms');
+            const questionForms = container.querySelectorAll('.mcq-question-form');
+            
+            questionForms.forEach((form, index) => {
+                const h4 = form.querySelector('h4');
+                h4.innerHTML = `<span>${index + 1}.</span> Question ${index + 1}`;
+            });
+        }
+
+        // Save MCQ exam
+        async function saveMCQExam() {
+            const title = document.getElementById('mcqExamTitle').value.trim();
+            const category = document.getElementById('mcqExamCategory').value;
+            const subject = document.getElementById('mcqExamSubject').value;
+            const chapter = document.getElementById('mcqExamChapter').value.trim();
+            const timeLimit = parseInt(document.getElementById('mcqExamTime').value);
+            const description = document.getElementById('mcqExamDescription').value.trim();
+            
+            // Validate basic fields
+            if (!title || !category || !subject || !chapter || !timeLimit) {
+                showMCQMessage("Please fill all required fields", "error");
+                return;
+            }
+            
+            // Get questions
+            const questionForms = document.querySelectorAll('.mcq-question-form');
+            if (questionForms.length === 0) {
+                showMCQMessage("Please add at least one question", "error");
+                return;
+            }
+            
+            const questions = [];
+            let hasErrors = false;
+            
+            questionForms.forEach((form, index) => {
+                const questionText = form.querySelector('.mcq-question-text').value.trim();
+                const optionInputs = form.querySelectorAll('.mcq-option-input');
+                const correctOption = form.querySelector('.mcq-correct-option-select').value;
+                
+                // Validate question
+                if (!questionText) {
+                    showMCQMessage(`Question ${index + 1}: Please enter question text`, "error");
+                    hasErrors = true;
+                    return;
+                }
+                
+                // Validate options
+                const options = {};
+                optionInputs.forEach(input => {
+                    const letter = input.dataset.letter;
+                    const text = input.value.trim();
+                    if (!text) {
+                        showMCQMessage(`Question ${index + 1}: Please fill option ${letter}`, "error");
+                        hasErrors = true;
+                        return;
+                    }
+                    options[letter] = text;
+                });
+                
+                // Validate correct option
+                if (!correctOption) {
+                    showMCQMessage(`Question ${index + 1}: Please select correct answer`, "error");
+                    hasErrors = true;
+                    return;
+                }
+                
+                if (hasErrors) return;
+                
+                questions.push({
+                    id: `q${index + 1}`,
+                    text: questionText,
+                    options: options,
+                    correctAnswer: correctOption,
+                    explanation: ""
+                });
+            });
+            
+            if (hasErrors) return;
+            
+            const newExam = {
+                id: Date.now().toString(),
+                title: title,
+                category: category,
+                subject: subject,
+                subjectName: SUBJECTS[category].find(s => s.id === subject).name,
+                chapter: chapter,
+                timeLimit: timeLimit,
+                description: description,
+                questions: questions,
+                totalQuestions: questions.length,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            
+            // Save to Firebase
+            if (isFirebaseConnected) {
+                try {
+                    await db.collection('mcqExams').doc(newExam.id).set({
+                        title: newExam.title,
+                        category: newExam.category,
+                        subject: newExam.subject,
+                        subjectName: newExam.subjectName,
+                        chapter: newExam.chapter,
+                        timeLimit: newExam.timeLimit,
+                        description: newExam.description,
+                        questions: newExam.questions,
+                        totalQuestions: newExam.totalQuestions,
+                        createdAt: newExam.createdAt,
+                        updatedAt: newExam.updatedAt
+                    });
+                    showMCQMessage("✅ MCQ exam saved to cloud!", "success");
+                } catch (error) {
+                    console.error("Error saving MCQ exam to Firebase:", error);
+                    showMCQMessage("❌ Cloud save failed, saved locally", "error");
+                }
+            }
+            
+            // Save locally
+            mcqExams.unshift(newExam);
+            saveMCQExamsToStorage();
+            
+            // Reset form
+            document.getElementById('mcqExamTitle').value = '';
+            document.getElementById('mcqExamChapter').value = '';
+            document.getElementById('mcqExamTime').value = '';
+            document.getElementById('mcqExamDescription').value = '';
+            document.getElementById('mcqQuestionForms').innerHTML = '';
+            addMCQQuestionForm();
+            
+            // Update UI
+            renderMCQExamGallery();
+            renderAdminMCQExams();
+            updateMCQStats();
+        }
+
+        // Filter MCQ exams in student view
+        function filterMCQExams(category) {
+            currentMCQCategory = category;
+            
+            // Update active filter button
+            document.querySelectorAll('.mcq-filter-btn-student').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderMCQExamGallery();
+        }
+
+        // Filter MCQ exams in admin view
+        function filterMCQExamsAdmin(category) {
+            currentMCQCategory = category;
+            
+            // Update active filter button
+            document.querySelectorAll('.thumbnail-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderAdminMCQExams();
+        }
+
+        // Render MCQ exam gallery in student view
+        function renderMCQExamGallery() {
+            const container = document.getElementById('mcqExamContent');
+            if (!container) return;
+            
+            const filteredExams = mcqExams.filter(exam => 
+                currentMCQCategory === 'all' || exam.category === currentMCQCategory
+            );
+            
+            container.innerHTML = '';
+            
+            if (filteredExams.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: var(--radius-md); border: 2px dashed #cbd5e1;">
+                        <p style="color: var(--text-secondary); margin-bottom: 16px;">No MCQ exams available yet</p>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Admin will add exams soon</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="mcq-exam-grid">
+                    ${filteredExams.map(exam => `
+                        <div class="mcq-exam-card" data-id="${exam.id}">
+                            <span class="mcq-exam-category ${exam.category}">${exam.category.toUpperCase()}</span>
+                            <h4 class="mcq-exam-title">${exam.title}</h4>
+                            <p class="mcq-exam-subject">
+                                <span>📚</span> ${exam.subjectName}
+                            </p>
+                            <p class="mcq-exam-chapter">
+                                <span>📖</span> ${exam.chapter}
+                            </p>
+                            <div class="mcq-exam-stats">
+                                <div class="mcq-stat">
+                                    <div class="mcq-stat-value">${exam.totalQuestions}</div>
+                                    <div class="mcq-stat-label">Questions</div>
+                                </div>
+                                <div class="mcq-stat">
+                                    <div class="mcq-stat-value">${exam.timeLimit}</div>
+                                    <div class="mcq-stat-label">Minutes</div>
+                                </div>
+                            </div>
+                            ${exam.description ? `<p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">${exam.description}</p>` : ''}
+                            <button onclick="startMCQExam('${exam.id}')" class="mcq-exam-link">
+                                <span>🚀</span> Start Exam
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Render admin MCQ exams
+        function renderAdminMCQExams() {
+            const container = document.getElementById('adminMCQExamsContainer');
+            if (!container) return;
+            
+            const filteredExams = mcqExams.filter(exam => 
+                currentMCQCategory === 'all' || exam.category === currentMCQCategory
+            );
+            
+            container.innerHTML = '';
+            
+            if (filteredExams.length === 0) {
+                container.innerHTML = '<div class="message-box" style="text-align: center; padding: 40px;">No MCQ exams created yet.</div>';
+                return;
+            }
+            
+            filteredExams.forEach(exam => {
+                const card = document.createElement('div');
+                card.className = 'mcq-exam-card';
+                card.style.cssText = `
+                    background: white;
+                    border-radius: var(--radius-md);
+                    padding: 24px;
+                    box-shadow: var(--shadow-sm);
+                    border: 1px solid #e2e8f0;
+                    transition: all var(--transition-fast);
+                    margin-bottom: 20px;
+                `;
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 1.1rem;">${exam.title}</h4>
+                            <div style="display: flex; gap: 12px; margin-bottom: 8px;">
+                                <span style="background: ${exam.category === 'ssc' ? 'rgba(14, 165, 233, 0.1)' : 'rgba(139, 92, 246, 0.1)'}; 
+                                      color: ${exam.category === 'ssc' ? 'var(--ssc-color)' : 'var(--hsc-color)'}; 
+                                      padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
+                                    ${exam.category.toUpperCase()}
+                                </span>
+                                <span style="color: var(--text-secondary); font-size: 0.9rem;">
+                                    📚 ${exam.subjectName}
+                                </span>
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 12px 0;">
+                                📖 ${exam.chapter}
+                            </p>
+                            <div style="display: flex; gap: 20px; margin-bottom: 16px;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">${exam.totalQuestions}</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Questions</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">${exam.timeLimit}</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Minutes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mcq-exam-actions">
+                        <button onclick="editMCQExam('${exam.id}')" class="mcq-edit-btn">
+                            <span>✏️</span> Edit
+                        </button>
+                        <button onclick="deleteMCQExam('${exam.id}')" class="mcq-delete-btn">
+                            <span>🗑️</span> Delete
+                        </button>
+                        <button onclick="previewMCQExam('${exam.id}')" 
+                                style="flex: 1; background: var(--gradient-primary); color: white; border: none; padding: 10px 16px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span>👁️</span> Preview
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Start MCQ exam
+        function startMCQExam(examId) {
+            currentExam = mcqExams.find(exam => exam.id === examId);
+            if (!currentExam) return;
+            
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            timeRemaining = currentExam.timeLimit * 60; // Convert to seconds
+            
+            // Initialize user answers array
+            currentExam.questions.forEach((question, index) => {
+                userAnswers[index] = {
+                    questionId: question.id,
+                    selectedAnswer: null,
+                    isCorrect: false,
+                    timeSpent: 0
+                };
+            });
+            
+            // Show exam interface
+            showMCQExamInterface();
+            
+            // Start timer
+            startExamTimer();
+        }
+
+        // Show MCQ exam interface
+        function showMCQExamInterface() {
+            const interfaceDiv = document.getElementById('mcqExamInterface');
+            const contentDiv = document.getElementById('mcqExamInterfaceContent');
+            
+            contentDiv.innerHTML = `
+                <div class="mcq-exam-header">
+                    <div class="mcq-exam-info">
+                        <h3>${currentExam.title}</h3>
+                        <p>${currentExam.subjectName} • ${currentExam.chapter}</p>
+                    </div>
+                    <div class="mcq-timer" id="mcqTimer">
+                        ${formatTime(timeRemaining)}
+                    </div>
+                </div>
+                
+                <div id="mcqQuestionsSection">
+                    <!-- Questions will be loaded here -->
+                </div>
+                
+                <div id="mcqResultSection" class="mcq-result-container">
+                    <!-- Results will be shown here -->
+                </div>
+            `;
+            
+            interfaceDiv.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Load first question
+            loadMCQQuestion();
+        }
+
+        // Format time display
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Start exam timer
+        function startExamTimer() {
+            if (examTimer) clearInterval(examTimer);
+            
+            examTimer = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('mcqTimer').textContent = formatTime(timeRemaining);
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(examTimer);
+                    submitMCQExam();
+                }
+            }, 1000);
+        }
+
+        // Load MCQ question
+        function loadMCQQuestion() {
+            const section = document.getElementById('mcqQuestionsSection');
+            const question = currentExam.questions[currentQuestionIndex];
+            const userAnswer = userAnswers[currentQuestionIndex];
+            
+            section.innerHTML = `
+                <div class="mcq-question-container">
+                    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                        <span class="mcq-question-number">${currentQuestionIndex + 1}</span>
+                        <span style="color: var(--text-secondary); font-weight: 500;">
+                            Question ${currentQuestionIndex + 1} of ${currentExam.questions.length}
+                        </span>
+                    </div>
+                    
+                    <div class="mcq-question-text">
+                        ${question.text}
+                    </div>
+                    
+                    <div class="mcq-options-container">
+                        ${Object.entries(question.options).map(([letter, text]) => `
+                            <div class="mcq-option ${userAnswer.selectedAnswer === letter ? 'selected' : ''}" 
+                                 onclick="selectMCQAnswer('${letter}')">
+                                <div class="mcq-option-letter">${letter}</div>
+                                <div class="mcq-option-text">${text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="mcq-exam-controls">
+                    <button class="mcq-prev-btn" onclick="prevMCQQuestion()" ${currentQuestionIndex === 0 ? 'disabled style="opacity:0.5;"' : ''}>
+                        <span>←</span> Previous
+                    </button>
+                    <div style="display: flex; gap: 12px;">
+                        ${currentQuestionIndex < currentExam.questions.length - 1 ? `
+                            <button class="mcq-next-btn" onclick="nextMCQQuestion()">
+                                Next <span>→</span>
+                            </button>
+                        ` : `
+                            <button class="mcq-submit-btn" onclick="submitMCQExam()">
+                                <span>📤</span> Submit Exam
+                            </button>
+                        `}
+                    </div>
+                </div>
+                
+                <!-- Question navigation -->
+                <div style="margin-top: 32px;">
+                    <h4 style="color: var(--text-primary); margin-bottom: 16px; font-size: 1rem;">Question Navigation</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        ${currentExam.questions.map((_, index) => `
+                            <button onclick="goToMCQQuestion(${index})" 
+                                    style="width: 40px; height: 40px; border: 2px solid ${userAnswers[index].selectedAnswer ? 'var(--primary-color)' : '#e2e8f0'}; 
+                                           background: ${index === currentQuestionIndex ? 'var(--primary-color)' : userAnswers[index].selectedAnswer ? '#dbeafe' : 'white'}; 
+                                           color: ${index === currentQuestionIndex ? 'white' : userAnswers[index].selectedAnswer ? 'var(--primary-color)' : 'var(--text-primary)'}; 
+                                           border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; transition: all var(--transition-fast);">
+                                ${index + 1}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Select MCQ answer
+        function selectMCQAnswer(letter) {
+            userAnswers[currentQuestionIndex].selectedAnswer = letter;
+            
+            // Update UI
+            const options = document.querySelectorAll('.mcq-option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+                if (option.querySelector('.mcq-option-letter').textContent === letter) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        // Next question
+        function nextMCQQuestion() {
+            if (currentQuestionIndex < currentExam.questions.length - 1) {
+                currentQuestionIndex++;
+                loadMCQQuestion();
+            }
+        }
+
+        // Previous question
+        function prevMCQQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadMCQQuestion();
+            }
+        }
+
+        // Go to specific question
+        function goToMCQQuestion(index) {
+            currentQuestionIndex = index;
+            loadMCQQuestion();
+        }
+
+        // Submit MCQ exam
+        function submitMCQExam() {
+            clearInterval(examTimer);
+            
+            // Calculate results
+            let correctCount = 0;
+            currentExam.questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                userAnswer.isCorrect = userAnswer.selectedAnswer === question.correctAnswer;
+                if (userAnswer.isCorrect) correctCount++;
+            });
+            
+            const score = Math.round((correctCount / currentExam.questions.length) * 100);
+            
+            // Show results
+            showMCQResults(score, correctCount);
+        }
+
+        // Show MCQ results
+        function showMCQResults(score, correctCount) {
+            const section = document.getElementById('mcqQuestionsSection');
+            const resultSection = document.getElementById('mcqResultSection');
+            
+            section.style.display = 'none';
+            resultSection.style.display = 'block';
+            
+            // Determine icon and message based on score
+            let icon = '🎉';
+            let message = 'Excellent!';
+            let color = '#10b981';
+            
+            if (score >= 80) {
+                icon = '🎉';
+                message = 'Excellent Work!';
+                color = '#10b981';
+            } else if (score >= 60) {
+                icon = '👍';
+                message = 'Good Job!';
+                color = '#3b82f6';
+            } else if (score >= 40) {
+                icon = '💪';
+                message = 'Keep Practicing!';
+                color = '#f59e0b';
+            } else {
+                icon = '📚';
+                message = 'Need More Practice';
+                color = '#ef4444';
+            }
+            
+            resultSection.innerHTML = `
+                <div class="mcq-result-icon">${icon}</div>
+                <h2 class="mcq-result-title">${message}</h2>
+                <div class="mcq-result-score" style="color: ${color};">${score}%</div>
+                
+                <div class="mcq-result-breakdown">
+                    <div class="mcq-result-stats">
+                        <div class="mcq-result-stat">
+                            <div class="mcq-result-stat-value">${correctCount}/${currentExam.questions.length}</div>
+                            <div class="mcq-result-stat-label">Correct Answers</div>
+                        </div>
+                        <div class="mcq-result-stat">
+                            <div class="mcq-result-stat-value">${currentExam.questions.length - correctCount}</div>
+                            <div class="mcq-result-stat-label">Incorrect Answers</div>
+                        </div>
+                        <div class="mcq-result-stat">
+                            <div class="mcq-result-stat-value">${formatTime(timeRemaining)}</div>
+                            <div class="mcq-result-stat-label">Time Remaining</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mcq-review-questions">
+                        <h4 class="mcq-review-title">Review Answers</h4>
+                        ${currentExam.questions.map((question, index) => {
+                            const userAnswer = userAnswers[index];
+                            const isCorrect = userAnswer.isCorrect;
+                            const correctAnswer = question.correctAnswer;
+                            
+                            return `
+                                <div class="mcq-review-question ${isCorrect ? 'correct' : 'incorrect'}">
+                                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                                        <strong style="color: var(--text-primary);">${index + 1}. ${question.text}</strong>
+                                        <span style="background: ${isCorrect ? '#10b981' : '#ef4444'}; color: white; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
+                                            ${isCorrect ? 'Correct' : 'Incorrect'}
+                                        </span>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <div style="color: ${isCorrect ? '#10b981' : '#ef4444'}; font-weight: 600; margin-bottom: 4px;">
+                                            Your Answer: ${userAnswer.selectedAnswer || 'Not Answered'} - ${question.options[userAnswer.selectedAnswer] || 'N/A'}
+                                        </div>
+                                        ${!isCorrect ? `
+                                            <div style="color: #10b981; font-weight: 600;">
+                                                Correct Answer: ${correctAnswer} - ${question.options[correctAnswer]}
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 12px; margin-top: 32px;">
+                    <button onclick="retryMCQExam()" 
+                            style="background: var(--gradient-primary); color: white; border: none; padding: 14px 32px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                        <span>🔄</span> Retry Exam
+                    </button>
+                    <button onclick="closeMCQExam()" 
+                            style="background: white; color: var(--primary-color); border: 2px solid #e2e8f0; padding: 14px 32px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                        <span>🏠</span> Back to Home
+                    </button>
+                </div>
+            `;
+        }
+
+        // Retry MCQ exam
+        function retryMCQExam() {
+            startMCQExam(currentExam.id);
+        }
+
+        // Close MCQ exam
+        function closeMCQExam() {
+            const interfaceDiv = document.getElementById('mcqExamInterface');
+            interfaceDiv.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            if (examTimer) {
+                clearInterval(examTimer);
+                examTimer = null;
+            }
+        }
+
+        // Edit MCQ exam
+        function editMCQExam(examId) {
+            const exam = mcqExams.find(e => e.id === examId);
+            if (!exam) return;
+            
+            // Fill form with exam data
+            document.getElementById('mcqExamTitle').value = exam.title;
+            document.getElementById('mcqExamCategory').value = exam.category;
+            updateMCQSubjects();
+            document.getElementById('mcqExamSubject').value = exam.subject;
+            document.getElementById('mcqExamChapter').value = exam.chapter;
+            document.getElementById('mcqExamTime').value = exam.timeLimit;
+            document.getElementById('mcqExamDescription').value = exam.description || '';
+            
+            // Clear existing questions
+            document.getElementById('mcqQuestionForms').innerHTML = '';
+            
+            // Add questions
+            exam.questions.forEach((question, index) => {
+                addMCQQuestionForm(index + 1);
+                const questionForm = document.querySelectorAll('.mcq-question-form')[index];
+                
+                // Fill question data
+                questionForm.querySelector('.mcq-question-text').value = question.text;
+                
+                // Fill options
+                Object.entries(question.options).forEach(([letter, text]) => {
+                    const input = questionForm.querySelector(`.mcq-option-input[data-letter="${letter}"]`);
+                    if (input) input.value = text;
+                });
+                
+                // Set correct answer
+                questionForm.querySelector('.mcq-correct-option-select').value = question.correctAnswer;
+            });
+            
+            // Scroll to form
+            document.getElementById('mcqTabBtn').click();
+            document.getElementById('mcqExamTitle').scrollIntoView({ behavior: 'smooth' });
+            
+            // Store exam ID for update
+            document.getElementById('mcqExamTitle').dataset.examId = examId;
+        }
+
+        // Delete MCQ exam
+        async function deleteMCQExam(examId) {
+            if (!confirm("Are you sure you want to delete this MCQ exam?")) return;
+            
+            // Delete from Firebase
+            if (isFirebaseConnected) {
+                try {
+                    await db.collection('mcqExams').doc(examId).delete();
+                } catch (error) {
+                    console.error("Error deleting MCQ exam from Firebase:", error);
+                }
+            }
+            
+            // Delete locally
+            mcqExams = mcqExams.filter(exam => exam.id !== examId);
+            saveMCQExamsToStorage();
+            
+            // Refresh display
+            renderMCQExamGallery();
+            renderAdminMCQExams();
+            updateMCQStats();
+        }
+
+        // Preview MCQ exam
+        function previewMCQExam(examId) {
+            const exam = mcqExams.find(e => e.id === examId);
+            if (!exam) return;
+            
+            const previewWindow = window.open('', '_blank');
+            previewWindow.document.write(`
+                <html>
+                <head>
+                    <title>Preview: ${exam.title}</title>
+                    <style>
+                        body { font-family: 'Inter', sans-serif; padding: 20px; background: #f8fafc; }
+                        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+                        h1 { color: #2563eb; margin-bottom: 20px; }
+                        .question { margin-bottom: 30px; padding: 20px; background: #f1f5f9; border-radius: 12px; }
+                        .correct { color: #10b981; font-weight: 600; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>${exam.title}</h1>
+                        <p><strong>Subject:</strong> ${exam.subjectName}</p>
+                        <p><strong>Chapter:</strong> ${exam.chapter}</p>
+                        <p><strong>Time Limit:</strong> ${exam.timeLimit} minutes</p>
+                        <p><strong>Total Questions:</strong> ${exam.totalQuestions}</p>
+                        
+                        <hr style="margin: 30px 0;">
+                        
+                        ${exam.questions.map((q, index) => `
+                            <div class="question">
+                                <h3>${index + 1}. ${q.text}</h3>
+                                <ul>
+                                    ${Object.entries(q.options).map(([letter, text]) => `
+                                        <li ${letter === q.correctAnswer ? 'class="correct"' : ''}>
+                                            ${letter}. ${text} ${letter === q.correctAnswer ? '✓' : ''}
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                                <p><strong>Correct Answer:</strong> ${q.correctAnswer}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </body>
+                </html>
+            `);
+            previewWindow.document.close();
+        }
+
+        // Update MCQ statistics
+        function updateMCQStats() {
+            document.getElementById('totalMCQExams').textContent = mcqExams.length;
+            document.getElementById('totalMCQQuestions').textContent = mcqExams.reduce((total, exam) => total + exam.questions.length, 0);
+            document.getElementById('sscMCQExams').textContent = mcqExams.filter(exam => exam.category === 'ssc').length;
+            document.getElementById('hscMCQExams').textContent = mcqExams.filter(exam => exam.category === 'hsc').length;
+        }
+
+        // Show MCQ message
+        function showMCQMessage(message, type) {
+            const messageDiv = document.getElementById('mcqMessage');
+            messageDiv.innerHTML = `<div class="${type}-message">${message}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 3000);
         }
 
         // =================== THUMBNAIL SYSTEM ===================
@@ -2818,432 +4335,6 @@
             }
         }
 
-        // =================== STUDENT MESSAGE SYSTEM ===================
-        async function sendStudentMessage() {
-            const name = document.getElementById('studentMsgName').value.trim();
-            const phone = document.getElementById('studentMsgPhone').value.trim();
-            const category = document.getElementById('studentMsgCategory').value;
-            const content = document.getElementById('studentMsgContent').value.trim();
-            
-            if (!name || !phone || !category || !content) {
-                showStudentMessageResponse("সব তথ্য পূরণ করুন", "error");
-                return;
-            }
-            
-            if (!/^01[3-9]\d{8}$/.test(phone)) {
-                showStudentMessageResponse("সঠিক মোবাইল নম্বর দিন", "error");
-                return;
-            }
-            
-            const newMessage = {
-                id: Date.now().toString(),
-                studentName: name,
-                studentPhone: phone,
-                category: category,
-                message: content,
-                status: 'unread',
-                isReplied: false,
-                replies: [],
-                date: new Date().toISOString(),
-                readAt: null,
-                repliedAt: null
-            };
-            
-            // Save to Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('studentMessages').doc(newMessage.id).set({
-                        studentName: newMessage.studentName,
-                        studentPhone: newMessage.studentPhone,
-                        category: newMessage.category,
-                        message: newMessage.message,
-                        status: newMessage.status,
-                        isReplied: newMessage.isReplied,
-                        replies: newMessage.replies,
-                        date: newMessage.date,
-                        readAt: newMessage.readAt,
-                        repliedAt: newMessage.repliedAt
-                    });
-                } catch (error) {
-                    console.error("Error saving student message to Firebase:", error);
-                }
-            }
-            
-            // Save locally
-            studentMessages.push(newMessage);
-            saveStudentMessagesToStorage();
-            
-            // Clear form
-            document.getElementById('studentMsgName').value = '';
-            document.getElementById('studentMsgPhone').value = '';
-            document.getElementById('studentMsgCategory').value = '';
-            document.getElementById('studentMsgContent').value = '';
-            
-            // Show success message
-            showStudentMessageResponse("✅ আপনার বার্তা পাঠানো হয়েছে! অ্যাডমিন শীঘ্রই উত্তর দিবেন।", "success");
-            
-            // Auto-check for replies after 5 seconds
-            setTimeout(() => {
-                loadStudentReplies();
-            }, 5000);
-        }
-
-        async function loadStudentReplies() {
-            const phone = document.getElementById('studentMsgPhone').value.trim();
-            if (!phone) {
-                showStudentMessageResponse("মোবাইল নম্বর দিন উত্তর দেখতে", "error");
-                return;
-            }
-            
-            let userMessages = [];
-            
-            if (isFirebaseConnected) {
-                try {
-                    const snapshot = await db.collection('studentMessages')
-                        .where('studentPhone', '==', phone)
-                        .orderBy('date', 'desc')
-                        .get();
-                    
-                    userMessages = [];
-                    snapshot.forEach(doc => {
-                        userMessages.push({ id: doc.id, ...doc.data() });
-                    });
-                } catch (error) {
-                    console.error("Error loading student replies from Firebase:", error);
-                    userMessages = studentMessages.filter(msg => 
-                        msg.studentPhone === phone
-                    );
-                }
-            } else {
-                userMessages = studentMessages.filter(msg => 
-                    msg.studentPhone === phone
-                );
-            }
-            
-            const container = document.getElementById('studentRepliesContainer');
-            container.innerHTML = '';
-            
-            if (userMessages.length === 0) {
-                container.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">কোনো বার্তা পাওয়া যায়নি</p>';
-                return;
-            }
-            
-            userMessages.forEach(msg => {
-                const card = document.createElement('div');
-                card.className = 'message-system-card';
-                card.style.marginBottom = '20px';
-                
-                let repliesHtml = '';
-                if (msg.replies && msg.replies.length > 0) {
-                    repliesHtml += '<div style="margin-top: 20px; border-top: 2px dashed #ddd; padding-top: 20px;">';
-                    repliesHtml += '<h5 style="color: #10b981; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">📬 অ্যাডমিনের উত্তর:</h5>';
-                    
-                    msg.replies.forEach((reply, index) => {
-                        repliesHtml += `
-                            <div class="chat-message admin" style="margin-bottom: 16px;">
-                                <div>${reply.message}</div>
-                                <div class="message-time">${new Date(reply.date).toLocaleString()}</div>
-                            </div>
-                        `;
-                    });
-                    repliesHtml += '</div>';
-                } else {
-                    repliesHtml = '<p style="color: #f59e0b; text-align: center; padding: 12px; background: #fffbeb; border-radius: var(--radius-md);">অ্যাডমিন এখনও উত্তর দেননি</p>';
-                }
-                
-                card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
-                        <div>
-                            <h4 style="margin: 0; color: #3b82f6;">${msg.studentName}</h4>
-                            <p style="margin: 8px 0; color: #666; font-size: 0.9rem;">${formatMessageDate(msg.date)}</p>
-                            <p style="margin: 12px 0; color: var(--text-primary); line-height: 1.6;">${msg.message}</p>
-                        </div>
-                        <span class="message-badge ${msg.isReplied ? 'badge-admin' : 'badge-unread'}">
-                            ${msg.isReplied ? 'উত্তর দেওয়া হয়েছে' : 'অপেক্ষমান'}
-                        </span>
-                    </div>
-                    ${repliesHtml}
-                `;
-                
-                container.appendChild(card);
-            });
-            
-            showStudentMessageResponse(`✅ ${userMessages.length}টি বার্তা পাওয়া গেছে`, "success");
-        }
-
-        async function loadAdminStudentMessages() {
-            if (isFirebaseConnected) {
-                try {
-                    const snapshot = await db.collection('studentMessages').orderBy('date', 'desc').get();
-                    studentMessages = [];
-                    snapshot.forEach(doc => {
-                        studentMessages.push({ id: doc.id, ...doc.data() });
-                    });
-                } catch (error) {
-                    console.error("Error loading student messages from Firebase:", error);
-                }
-            }
-            
-            displayStudentMessages();
-            updateStudentMessageStats();
-        }
-
-        function displayStudentMessages(filteredMessages = null) {
-            const container = document.getElementById('studentMessagesContainer');
-            const messagesToShow = filteredMessages || studentMessages;
-            
-            container.innerHTML = '';
-            
-            if (messagesToShow.length === 0) {
-                container.innerHTML = '<div class="message-box" style="text-align: center; padding: 40px;">No student messages found.</div>';
-                return;
-            }
-            
-            messagesToShow.forEach(msg => {
-                const card = document.createElement('div');
-                card.className = `message-system-card ${msg.status === 'unread' ? 'from-student' : ''}`;
-                
-                let repliesHtml = '';
-                if (msg.replies && msg.replies.length > 0) {
-                    repliesHtml += '<div class="chat-container" style="max-height: 240px; margin-top: 20px;">';
-                    repliesHtml += '<div class="chat-message student">';
-                    repliesHtml += `<div><strong>${msg.studentName}:</strong> ${msg.message}</div>`;
-                    repliesHtml += `<div class="message-time">${formatMessageDate(msg.date)}</div>`;
-                    repliesHtml += '</div>';
-                    
-                    msg.replies.forEach((reply, index) => {
-                        repliesHtml += `
-                            <div class="chat-message admin">
-                                <div><strong>Admin:</strong> ${reply.message}</div>
-                                <div class="message-time">${formatMessageDate(reply.date)}</div>
-                            </div>
-                        `;
-                    });
-                    repliesHtml += '</div>';
-                } else {
-                    repliesHtml = `
-                        <div class="chat-container" style="max-height: 240px; margin-top: 20px;">
-                            <div class="chat-message student">
-                                <div><strong>${msg.studentName}:</strong> ${msg.message}</div>
-                                <div class="message-time">${formatMessageDate(msg.date)}</div>
-                            </div>
-                            <p style="color: #f59e0b; text-align: center; padding: 20px; background: #fffbeb; border-radius: var(--radius-md);">No reply yet</p>
-                        </div>
-                    `;
-                }
-                
-                card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px;">
-                        <div>
-                            <h4 style="margin: 0; color: #3b82f6;">${msg.studentName}</h4>
-                            <p style="margin: 8px 0; color: var(--text-secondary); font-size: 0.9rem;">
-                                📱 ${msg.studentPhone} • 📁 ${msg.category}
-                            </p>
-                        </div>
-                        <div style="display: flex; gap: 8px;">
-                            <span class="message-badge ${msg.status === 'unread' ? 'badge-unread' : 'badge-admin'}">
-                                ${msg.status === 'unread' ? 'Unread' : 'Read'}
-                            </span>
-                            <span class="message-badge ${msg.isReplied ? 'badge-admin' : 'badge-student'}">
-                                ${msg.isReplied ? 'Replied' : 'No Reply'}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    ${repliesHtml}
-                    
-                    <div class="reply-form">
-                        <textarea id="reply_${msg.id}" placeholder="Type your reply here..." style="width:100%; padding:12px 16px; margin-bottom:16px; border-radius:var(--radius-md); height:100px; border: 2px solid #e2e8f0; font-family: 'Inter', sans-serif;"></textarea>
-                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                            <button onclick="markAsRead('${msg.id}')" 
-                                    style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); color: var(--text-primary); border: 2px solid #cbd5e1; padding: 10px 20px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: all var(--transition-fast);">
-                                <span>✅</span> Mark as Read
-                            </button>
-                            <button onclick="sendReply('${msg.id}')" 
-                                    style="background: var(--gradient-secondary); color: white; border: none; padding: 10px 20px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: all var(--transition-fast);">
-                                <span>📤</span> Send Reply
-                            </button>
-                            <button onclick="deleteStudentMessage('${msg.id}')" 
-                                    style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); color: #dc2626; border: 2px solid #fca5a5; padding: 10px 20px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: all var(--transition-fast);">
-                                <span>🗑️</span> Delete
-                            </button>
-                        </div>
-                    </div>
-                `;
-                
-                container.appendChild(card);
-            });
-        }
-
-        async function markAsRead(messageId) {
-            const message = studentMessages.find(m => m.id === messageId);
-            if (!message) return;
-            
-            message.status = 'read';
-            message.readAt = new Date().toISOString();
-            
-            // Update Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('studentMessages').doc(messageId).update({
-                        status: 'read',
-                        readAt: message.readAt
-                    });
-                } catch (error) {
-                    console.error("Error updating message in Firebase:", error);
-                }
-            }
-            
-            // Update local storage
-            saveStudentMessagesToStorage();
-            
-            // Refresh display
-            displayStudentMessages();
-            updateStudentMessageStats();
-        }
-
-        async function sendReply(messageId) {
-            const replyText = document.getElementById(`reply_${messageId}`).value.trim();
-            if (!replyText) return;
-            
-            const message = studentMessages.find(m => m.id === messageId);
-            if (!message) return;
-            
-            const newReply = {
-                message: replyText,
-                date: new Date().toISOString(),
-                from: 'admin'
-            };
-            
-            // Add reply to message
-            if (!message.replies) message.replies = [];
-            message.replies.push(newReply);
-            message.isReplied = true;
-            message.repliedAt = new Date().toISOString();
-            message.status = 'read';
-            
-            // Update Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('studentMessages').doc(messageId).update({
-                        replies: message.replies,
-                        isReplied: true,
-                        repliedAt: message.repliedAt,
-                        status: 'read'
-                    });
-                } catch (error) {
-                    console.error("Error updating reply in Firebase:", error);
-                }
-            }
-            
-            // Update local storage
-            saveStudentMessagesToStorage();
-            
-            // Clear reply textarea
-            document.getElementById(`reply_${messageId}`).value = '';
-            
-            // Refresh display
-            displayStudentMessages();
-            updateStudentMessageStats();
-            
-            // Show notification
-            showMessage("Reply sent successfully!", "success");
-        }
-
-        async function deleteStudentMessage(messageId) {
-            if (!confirm("Delete this message?")) return;
-            
-            // Delete from Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('studentMessages').doc(messageId).delete();
-                } catch (error) {
-                    console.error("Error deleting message from Firebase:", error);
-                }
-            }
-            
-            // Delete locally
-            studentMessages = studentMessages.filter(m => m.id !== messageId);
-            saveStudentMessagesToStorage();
-            
-            // Refresh display
-            displayStudentMessages();
-            updateStudentMessageStats();
-        }
-
-        function filterStudentMessages() {
-            const statusFilter = document.getElementById('messageStatusFilter').value;
-            const searchTerm = document.getElementById('messageSearch').value.toLowerCase();
-            
-            let filtered = studentMessages;
-            
-            // Filter by status
-            if (statusFilter === 'unread') {
-                filtered = filtered.filter(m => m.status === 'unread');
-            } else if (statusFilter === 'replied') {
-                filtered = filtered.filter(m => m.isReplied === true);
-            } else if (statusFilter === 'not_replied') {
-                filtered = filtered.filter(m => m.isReplied === false);
-            }
-            
-            // Filter by search term
-            if (searchTerm) {
-                filtered = filtered.filter(m => 
-                    m.studentName.toLowerCase().includes(searchTerm) ||
-                    m.studentPhone.includes(searchTerm) ||
-                    m.message.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            displayStudentMessages(filtered);
-        }
-
-        function searchStudentMessages() {
-            filterStudentMessages();
-        }
-
-        function updateStudentMessageStats() {
-            const total = studentMessages.length;
-            const unread = studentMessages.filter(m => m.status === 'unread').length;
-            const replied = studentMessages.filter(m => m.isReplied === true).length;
-            
-            // Today's messages
-            const today = new Date().toISOString().split('T')[0];
-            const todayMessages = studentMessages.filter(m => 
-                m.date.split('T')[0] === today
-            ).length;
-            
-            document.getElementById('studentMessageCount').textContent = total;
-            document.getElementById('totalStudentMessages').textContent = total;
-            document.getElementById('unreadMessages').textContent = unread;
-            document.getElementById('repliedMessages').textContent = replied;
-            document.getElementById('todayMessages').textContent = todayMessages;
-        }
-
-        function formatMessageDate(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffMs = now - date;
-            const diffMins = Math.floor(diffMs / 60000);
-            const diffHours = Math.floor(diffMs / 3600000);
-            const diffDays = Math.floor(diffMs / 86400000);
-            
-            if (diffMins < 1) return 'Just now';
-            if (diffMins < 60) return `${diffMins} minutes ago`;
-            if (diffHours < 24) return `${diffHours} hours ago`;
-            if (diffDays < 7) return `${diffDays} days ago`;
-            
-            return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-        }
-
-        function showStudentMessageResponse(message, type) {
-            const responseDiv = document.getElementById('studentMsgResponse');
-            responseDiv.innerHTML = `<div class="${type}-message">${message}</div>`;
-            setTimeout(() => {
-                responseDiv.innerHTML = '';
-            }, 5000);
-        }
-
         // =================== SUBJECT MANAGEMENT ===================
         function updateSubjectOptions() {
             const category = document.getElementById('classCategory').value;
@@ -3372,346 +4463,6 @@
             content.scrollIntoView({behavior:'smooth'});
         }
 
-        // =================== PAYMENT SYSTEM ===================
-        function showPaymentForm() {
-            document.getElementById('paymentFormModal').style.display = 'flex';
-            // Reset form
-            document.getElementById('studentName').value = '';
-            document.getElementById('studentPhone').value = '';
-            document.getElementById('transactionId').value = '';
-            document.getElementById('paidAmount').value = paymentSettings.paymentAmount || 500;
-            document.getElementById('paymentFor').value = '';
-            document.getElementById('paymentMessage').innerHTML = '';
-        }
-
-        function closePaymentForm() {
-            document.getElementById('paymentFormModal').style.display = 'none';
-        }
-
-        async function submitPayment() {
-            const name = document.getElementById('studentName').value.trim();
-            const phone = document.getElementById('studentPhone').value.trim();
-            const trxId = document.getElementById('transactionId').value.trim();
-            const amount = document.getElementById('paidAmount').value.trim();
-            const paymentFor = document.getElementById('paymentFor').value;
-            
-            if (!name || !phone || !trxId || !amount || !paymentFor) {
-                showPaymentMessage("সব তথ্য পূরণ করুন", "error");
-                return;
-            }
-            
-            if (!/^01[3-9]\d{8}$/.test(phone)) {
-                showPaymentMessage("সঠিক মোবাইল নম্বর দিন", "error");
-                return;
-            }
-            
-            const newPayment = {
-                id: Date.now().toString(),
-                studentName: name,
-                studentPhone: phone,
-                transactionId: trxId,
-                amount: parseInt(amount),
-                paymentFor: paymentFor,
-                status: 'pending',
-                date: new Date().toISOString(),
-                bkashNumber: paymentSettings.bkashNumber,
-                verifiedBy: null,
-                verifiedAt: null
-            };
-            
-            // Save to Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('payments').doc(newPayment.id).set({
-                        studentName: newPayment.studentName,
-                        studentPhone: newPayment.studentPhone,
-                        transactionId: newPayment.transactionId,
-                        amount: newPayment.amount,
-                        paymentFor: newPayment.paymentFor,
-                        status: newPayment.status,
-                        date: newPayment.date,
-                        bkashNumber: newPayment.bkashNumber,
-                        verifiedBy: newPayment.verifiedBy,
-                        verifiedAt: newPayment.verifiedAt
-                    });
-                } catch (error) {
-                    console.error("Error saving payment to Firebase:", error);
-                }
-            }
-            
-            // Save locally
-            payments.push(newPayment);
-            savePaymentsToStorage();
-            
-            // Show success message
-            showPaymentMessage("✅ পেমেন্ট তথ্য জমা হয়েছে! অ্যাডমিন চেক করার পর কনফার্মেশন পাবেন।", "success");
-            
-            // Close form after 3 seconds
-            setTimeout(() => {
-                closePaymentForm();
-            }, 3000);
-        }
-
-        function showPaymentMessage(message, type) {
-            const messageDiv = document.getElementById('paymentMessage');
-            messageDiv.innerHTML = `<div class="${type}-message">${message}</div>`;
-        }
-
-        async function updatePaymentSettings() {
-            const bkashNumber = document.getElementById('bkashNumber').value.trim();
-            const paymentAmount = document.getElementById('paymentAmount').value.trim();
-            const instructions = document.getElementById('paymentInstructions').value.trim();
-            
-            if (!bkashNumber || !paymentAmount) {
-                showPaymentSettingsMessage("Please fill all fields", "error");
-                return;
-            }
-            
-            paymentSettings = {
-                bkashNumber: bkashNumber,
-                paymentAmount: parseInt(paymentAmount),
-                instructions: instructions
-            };
-            
-            // Save to Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('settings').doc('payment').set(paymentSettings);
-                } catch (error) {
-                    console.error("Error saving payment settings to Firebase:", error);
-                }
-            }
-            
-            // Save locally
-            savePaymentSettings();
-            
-            // Update student view
-            updatePaymentDisplay();
-            
-            showPaymentSettingsMessage("✅ Payment settings updated!", "success");
-        }
-
-        function updatePaymentDisplay() {
-            // Update the payment amount in student view
-            const amountElements = document.querySelectorAll('.payment-amount');
-            amountElements.forEach(el => {
-                el.textContent = `${paymentSettings.paymentAmount} টাকা`;
-            });
-        }
-
-        function loadPaymentSettingsUI() {
-            document.getElementById('bkashNumber').value = paymentSettings.bkashNumber;
-            document.getElementById('paymentAmount').value = paymentSettings.paymentAmount;
-            document.getElementById('paymentInstructions').value = paymentSettings.instructions;
-        }
-
-        async function loadAllPayments() {
-            if (isFirebaseConnected) {
-                try {
-                    const snapshot = await db.collection('payments').orderBy('date', 'desc').get();
-                    payments = [];
-                    snapshot.forEach(doc => {
-                        payments.push({ id: doc.id, ...doc.data() });
-                    });
-                } catch (error) {
-                    console.error("Error loading payments from Firebase:", error);
-                }
-            }
-            
-            displayPayments();
-            updatePaymentStats();
-        }
-
-        async function loadAdminPayments() {
-            await loadAllPayments();
-        }
-
-        function displayPayments(filteredPayments = null) {
-            const container = document.getElementById('paymentsContainer');
-            const paymentsToShow = filteredPayments || payments;
-            
-            container.innerHTML = '';
-            
-            if (paymentsToShow.length === 0) {
-                container.innerHTML = '<div class="message-box" style="text-align: center; padding: 40px;">No payments found.</div>';
-                return;
-            }
-            
-            paymentsToShow.forEach(payment => {
-                const card = document.createElement('div');
-                card.className = `payment-card ${payment.status}`;
-                
-                let statusBadge = '';
-                if (payment.status === 'pending') {
-                    statusBadge = '<span class="payment-badge badge-pending">⏳ Pending</span>';
-                } else if (payment.status === 'confirmed') {
-                    statusBadge = '<span class="payment-badge badge-confirmed">✅ Confirmed</span>';
-                } else if (payment.status === 'rejected') {
-                    statusBadge = '<span class="payment-badge badge-rejected">❌ Rejected</span>';
-                }
-                
-                card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
-                        <div>
-                            <h4 style="margin: 0; display: flex; align-items: center; gap: 8px;">${payment.studentName} ${statusBadge}</h4>
-                            <p style="margin: 8px 0; color: var(--text-secondary);"><strong>📱 Phone:</strong> ${payment.studentPhone}</p>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--payment-color);">${payment.amount} BDT</div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #f8fafc; padding: 16px; border-radius: var(--radius-md); margin: 16px 0;">
-                        <p style="margin: 4px 0; color: var(--text-primary);"><strong>🔢 TrxID:</strong> ${payment.transactionId}</p>
-                        <p style="margin: 4px 0; color: var(--text-primary);"><strong>🎯 For:</strong> ${payment.paymentFor}</p>
-                        <p style="margin: 4px 0; color: var(--text-primary);"><strong>📅 Date:</strong> ${new Date(payment.date).toLocaleString()}</p>
-                        ${payment.verifiedBy ? `
-                            <p style="margin: 4px 0; color: var(--text-primary);"><strong>👤 Verified by:</strong> ${payment.verifiedBy}</p>
-                            <p style="margin: 4px 0; color: var(--text-primary);"><strong>⏰ Verified at:</strong> ${new Date(payment.verifiedAt).toLocaleString()}</p>
-                        ` : ''}
-                    </div>
-                    
-                    <div style="margin-top: 20px;">
-                        ${payment.status === 'pending' ? `
-                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                <button onclick="updatePaymentStatus('${payment.id}', 'confirmed')" 
-                                        style="background: var(--gradient-secondary); color: white; border: none; padding: 10px 20px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: all var(--transition-fast);">
-                                    <span>✅</span> Confirm
-                                </button>
-                                <button onclick="updatePaymentStatus('${payment.id}', 'rejected')" 
-                                        style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; padding: 10px 20px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: all var(--transition-fast);">
-                                    <span>❌</span> Reject
-                                </button>
-                            </div>
-                        ` : ''}
-                        
-                        <button onclick="deletePayment('${payment.id}')" 
-                                style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); color: var(--text-primary); border: 2px solid #cbd5e1; padding: 10px 20px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; margin-top: 12px; display: inline-flex; align-items: center; gap: 8px; transition: all var(--transition-fast);">
-                            <span>🗑️</span> Delete
-                        </button>
-                    </div>
-                `;
-                
-                container.appendChild(card);
-            });
-        }
-
-        async function updatePaymentStatus(paymentId, status) {
-            const payment = payments.find(p => p.id === paymentId);
-            if (!payment) return;
-            
-            payment.status = status;
-            payment.verifiedBy = 'Admin';
-            payment.verifiedAt = new Date().toISOString();
-            
-            // Update Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('payments').doc(paymentId).update({
-                        status: status,
-                        verifiedBy: payment.verifiedBy,
-                        verifiedAt: payment.verifiedAt
-                    });
-                } catch (error) {
-                    console.error("Error updating payment in Firebase:", error);
-                }
-            }
-            
-            // Update local storage
-            savePaymentsToStorage();
-            
-            // Refresh display
-            displayPayments();
-            updatePaymentStats();
-            
-            // Show notification
-            showMessage(`Payment ${status} successfully!`, "success");
-        }
-
-        async function deletePayment(paymentId) {
-            if (!confirm("Delete this payment record?")) return;
-            
-            // Delete from Firebase
-            if (isFirebaseConnected) {
-                try {
-                    await db.collection('payments').doc(paymentId).delete();
-                } catch (error) {
-                    console.error("Error deleting payment from Firebase:", error);
-                }
-            }
-            
-            // Delete locally
-            payments = payments.filter(p => p.id !== paymentId);
-            savePaymentsToStorage();
-            
-            // Refresh display
-            displayPayments();
-            updatePaymentStats();
-        }
-
-        function filterPayments() {
-            const statusFilter = document.getElementById('paymentStatusFilter').value;
-            const dateFilter = document.getElementById('paymentDateFilter').value;
-            
-            let filtered = payments;
-            
-            // Filter by status
-            if (statusFilter !== 'all') {
-                filtered = filtered.filter(p => p.status === statusFilter);
-            }
-            
-            // Filter by date
-            if (dateFilter) {
-                filtered = filtered.filter(p => {
-                    const paymentDate = new Date(p.date).toISOString().split('T')[0];
-                    return paymentDate === dateFilter;
-                });
-            }
-            
-            displayPayments(filtered);
-        }
-
-        function updatePaymentStats() {
-            const total = payments.length;
-            const confirmed = payments.filter(p => p.status === 'confirmed').length;
-            const pending = payments.filter(p => p.status === 'pending').length;
-            const rejected = payments.filter(p => p.status === 'rejected').length;
-            
-            document.getElementById('totalPayments').textContent = total;
-            document.getElementById('confirmedPayments').textContent = confirmed;
-            document.getElementById('pendingPayments').textContent = pending;
-            document.getElementById('rejectedPayments').textContent = rejected;
-        }
-
-        function exportPayments() {
-            const data = payments.map(p => ({
-                Name: p.studentName,
-                Phone: p.studentPhone,
-                TrxID: p.transactionId,
-                Amount: p.amount,
-                For: p.paymentFor,
-                Status: p.status,
-                Date: new Date(p.date).toLocaleString(),
-                VerifiedBy: p.verifiedBy || 'N/A'
-            }));
-            
-            const csv = convertToCSV(data);
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `payments_${new Date().toISOString().split('T')[0]}.csv`;
-            a.click();
-        }
-
-        function convertToCSV(data) {
-            const headers = Object.keys(data[0]);
-            const rows = data.map(row => 
-                headers.map(header => `"${row[header]}"`).join(',')
-            );
-            return [headers.join(','), ...rows].join('\n');
-        }
-
         // =================== CLASS MANAGEMENT ===================
         async function loadAllDataFromFirebase() {
             if (!isFirebaseConnected) return;
@@ -3745,20 +4496,6 @@
                     suggestions.push({ id: doc.id, ...doc.data() });
                 });
                 
-                // Load payments
-                const paymentsSnapshot = await db.collection('payments').orderBy('date', 'desc').get();
-                payments = [];
-                paymentsSnapshot.forEach(doc => {
-                    payments.push({ id: doc.id, ...doc.data() });
-                });
-                
-                // Load student messages
-                const studentMessagesSnapshot = await db.collection('studentMessages').orderBy('date', 'desc').get();
-                studentMessages = [];
-                studentMessagesSnapshot.forEach(doc => {
-                    studentMessages.push({ id: doc.id, ...doc.data() });
-                });
-                
                 // Load thumbnails
                 const thumbnailsSnapshot = await db.collection('thumbnails').orderBy('order', 'asc').get();
                 thumbnails = [];
@@ -3766,11 +4503,12 @@
                     thumbnails.push({ id: doc.id, ...doc.data() });
                 });
                 
-                // Load payment settings
-                const settingsDoc = await db.collection('settings').doc('payment').get();
-                if (settingsDoc.exists) {
-                    paymentSettings = settingsDoc.data();
-                }
+                // Load MCQ exams
+                const mcqSnapshot = await db.collection('mcqExams').orderBy('createdAt', 'desc').get();
+                mcqExams = [];
+                mcqSnapshot.forEach(doc => {
+                    mcqExams.push({ id: doc.id, ...doc.data() });
+                });
                 
                 console.log("✅ All data loaded from Firebase");
                 showMessage("Data loaded from cloud", "success");
@@ -3824,30 +4562,6 @@
                 loadAdminSuggestions();
             });
             
-            // Payments listener
-            db.collection('payments').orderBy('date', 'desc').onSnapshot((snapshot) => {
-                payments = [];
-                snapshot.forEach(doc => {
-                    payments.push({ id: doc.id, ...doc.data() });
-                });
-                if (isAdminLoggedIn) {
-                    displayPayments();
-                    updatePaymentStats();
-                }
-            });
-            
-            // Student messages listener
-            db.collection('studentMessages').orderBy('date', 'desc').onSnapshot((snapshot) => {
-                studentMessages = [];
-                snapshot.forEach(doc => {
-                    studentMessages.push({ id: doc.id, ...doc.data() });
-                });
-                if (isAdminLoggedIn) {
-                    displayStudentMessages();
-                    updateStudentMessageStats();
-                }
-            });
-            
             // Thumbnails listener
             db.collection('thumbnails').orderBy('order', 'asc').onSnapshot((snapshot) => {
                 thumbnails = [];
@@ -3859,6 +4573,20 @@
                 if (isAdminLoggedIn) {
                     renderAdminThumbnails();
                     updateThumbnailStats();
+                }
+            });
+            
+            // MCQ exams listener
+            db.collection('mcqExams').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
+                mcqExams = [];
+                snapshot.forEach(doc => {
+                    mcqExams.push({ id: doc.id, ...doc.data() });
+                });
+                saveMCQExamsToStorage();
+                renderMCQExamGallery();
+                if (isAdminLoggedIn) {
+                    renderAdminMCQExams();
+                    updateMCQStats();
                 }
             });
         }
@@ -4361,14 +5089,6 @@
             }, 3000);
         }
 
-        function showPaymentSettingsMessage(message, type) {
-            const messageDiv = document.getElementById('paymentSettingsMessage');
-            messageDiv.innerHTML = `<div class="${type}-message">${message}</div>`;
-            setTimeout(() => {
-                messageDiv.innerHTML = '';
-            }, 3000);
-        }
-
         // =================== LOCAL STORAGE FUNCTIONS ===================
         function loadClassesFromStorage() { 
             classes = JSON.parse(localStorage.getItem('scienceWaterClasses')) || []; 
@@ -4429,15 +5149,6 @@
             localStorage.setItem('scienceWaterPaymentSettings', JSON.stringify(paymentSettings));
         }
 
-        function loadThumbnailsFromStorage() {
-            const saved = localStorage.getItem('scienceWaterThumbnails');
-            thumbnails = saved ? JSON.parse(saved) : [];
-        }
-
-        function saveThumbnailsToStorage() {
-            localStorage.setItem('scienceWaterThumbnails', JSON.stringify(thumbnails));
-        }
-
         // =================== UTILITY FUNCTIONS ===================
         function saveAllData() {
             if (isFirebaseConnected) {
@@ -4455,6 +5166,7 @@
             saveStudentMessagesToStorage();
             savePaymentSettings();
             saveThumbnailsToStorage();
+            saveMCQExamsToStorage();
             
             showMessage("All changes saved!", "success");
         }
